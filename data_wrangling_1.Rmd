@@ -1,0 +1,59 @@
+---
+title: "Data_wrangling_1"
+author: "Haoyang Wang"
+date: "2022-09-20"
+output: html_document
+---
+
+```{r}
+litters_data<-read.csv(file = "./data/FAS_litters.csv")
+names(litters_data)
+litters_data<-janitor::clean_names(litters_data)
+names(litters_data)
+setwd()
+pups_data = read.csv(file = "~/Desktop/2022 Fall/Data Science/R/data_wrangling_1/data/FAS_litters.csv")
+```
+```{r}
+tail(litters_data,5)
+skimr::skim(litters_data)
+library(tidyverse)
+view(litters_data)
+litters_data<-read_csv(file = "./data/FAS_litters.csv", skip = 10, col_names = FALSE)
+head(litters_data)
+```
+```{r}
+litters_data<-read_csv(file = "./data/FAS_litters.csv",
+                       col_types = cols(
+                         Group=col_character(),
+                         `Litter Number`=col_character(),
+                         `GD0 weight`=col_double(),
+                         `GD18 weight`=col_double(),
+                         `GD of Birth`=col_integer(),
+                         `Pups born alive`=col_integer(),
+                         `Pups dead @ birth`=col_integer(),
+                         `Pups survive`=col_integer()
+                       ))
+tail(litters_data)
+```
+```{r}
+litters_data = read_csv(file = "./data/FAS_litters.csv",
+  col_types = "ccddiiii"
+)
+litters_data
+```
+```{r}
+pups_data<-read_csv("./data/FAS_pups.csv", col_types = "ciiii")
+skimr::skim(pups_data)
+```
+```{r}
+library(readxl)
+mlb11_data=read_excel("data/mlb11.xlsx", n_max=20)
+head(mlb11_data,5)
+```
+```{r}
+library(haven)
+pulse_data=read_sas("./data/public_pulse_data.sas7bdat")
+head(pulse_data,5)
+```
+
+
